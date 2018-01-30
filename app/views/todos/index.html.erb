@@ -1,0 +1,40 @@
+<h1>My Todos</h1>
+<div class="col-md-12">
+<%= form_for Todo.new, remote: true do |f| %>
+  <div class="form-group">
+    <%= f.text_field :description, placeholder:
+    "what needs doing?" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.text_field :priority, placeholder: "priority level" %>
+  </div>
+
+  <div class="form-group">
+  <%= f.submit %>
+  </div>
+<% end %>
+ 
+<ul>
+<% @todos.each do |todo| %>
+  <!-- This `id` attribute will help us find the correct element to remove using jQuery -->
+<div class="questions">
+  <li id="<%= todo.id %>">
+    <%= todo.description %><br>
+    <strong>priority: </strong><%= todo.priority %><br>
+
+    <!-- Add `remote: true` to the line below -->
+    <%= link_to "done", todo_path(todo), method: 'delete', remote: true %>
+  </li>
+  </div>
+<% end %>
+
+
+</ul>
+
+
+
+
+</div>
+
+
